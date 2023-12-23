@@ -1,0 +1,200 @@
+{% extends 'base/base.html' %}
+
+
+  {% block body %}
+  
+
+
+  <!-- Page Content -->
+  <!-- Banner Starts Here -->
+  <div class="main-banner header-text">
+    <div class="container-fluid">
+      <div class="owl-banner owl-carousel">
+
+        {% for b in data %}
+        <div class="item">
+          <img height="400px" src="media/{{b.banner_image}}" alt="">
+          <div class="item-content">
+            <div class="main-content">
+              <div class="meta-category">
+                <span>{{b.categories}}</span>
+              </div>
+              <a href="{% url 'postdetails' blog_id=b.id %}"><h4>{{b.title|truncatechars:50}}</h4></a>
+              <ul class="post-info">
+                <li><a href="#">{{b.writer}}</a></li>
+                <li><a href="#">{{b.date}}</a></li>
+                <li><a href="#">72 Comments</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <!-- Banner Ends Here -->
+
+  <section class="call-to-action">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="main-content">
+            <div class="row">
+              <div class="col-lg-8">
+                <span>Stand Blog HTML5  </span>
+                <h4>Creative HTML  For Bloggers!</h4>
+              </div>
+              <div class="col-lg-4">
+                <div class="main-button">
+                  <a rel="nofollow" href="#" target="_parent">Download Now!</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="blog-posts">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="all-blog-posts">
+            <div class="row">
+              
+
+              {% for b in data|slice:":3" %}
+              <!-- {{b}} -->
+              
+
+              <div class="col-lg-12">
+                <div class="blog-post">
+                  <div class="blog-thumb">
+                    <img height="300px" src="media/{{b.image}}" alt="">
+                  </div>
+                  <div class="down-content">
+                    <span>{{b.categories}}</span>
+                    <a href="{% url 'postdetails' blog_id=b.id %}"><h4>{{ b.title|truncatechars:50 }}</h4></a>
+
+                    <ul class="post-info">
+                      <li><a href="#">{{b.writer}}</a></li>
+                      <li><a href="#">{{b.date}}</a></li>
+                      <li><a href="#">48 Comments</a></li>
+                    </ul>
+                    <p>{{b.description|truncatechars:250}}</p>
+                    <div class="post-options">
+                      <div class="row">
+                        <div class="col-6">
+                          <ul class="post-tags">
+                            <li><i class="fa fa-tags"></i></li>
+                            <li><a href="#">HTML CSS</a>,</li>
+                            <li><a href="#">Photoshop</a></li>
+                          </ul>
+                        </div>
+                        <div class="col-6">
+                          <ul class="post-share">
+                            <li><i class="fa fa-share-alt"></i></li>
+                            <li><a href="#">Facebook</a>,</li>
+                            <li><a href="#">Twitter</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              {% endfor %}
+
+
+
+              <div class="col-lg-12">
+                <div class="main-button">
+                  <a href="{% url 'blog' %}">View All Posts</a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="sidebar">
+            <div class="row">
+              <!-- <div class="col-lg-12">
+                <div class="sidebar-item search">
+                  <form id="search_form" name="gs" method="GET" action="#">
+                    <input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on">
+                  </form>
+                </div>
+              </div> -->
+              <div class="col-lg-12">
+                <div class="sidebar-item recent-posts">
+                  <div class="sidebar-heading">
+                    <h2>Recent Posts</h2>
+                  </div>
+                  <div class="content">
+                    <ul>
+                      {% for r in data %}
+                      <li><a href="{% url 'postdetails' r.id %}">
+                        <h5>{{r.title}}</h5>
+                        <span>{{r.date}}</span>
+                      </a></li>
+                      {% endfor %}
+                      <!-- <li><a href="post-details.html">
+                        <h5>Suspendisse et metus nec libero ultrices varius eget in risus</h5>
+                        <span>May 28, 2020</span>
+                      </a></li>
+                      <li><a href="post-details.html">
+                        <h5>Swag hella echo park leggings, shaman cornhole ethical coloring</h5>
+                        <span>May 14, 2020</span>
+                      </a></li> -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-lg-12">
+                <div class="sidebar-item categories">
+                  <div class="sidebar-heading">
+                    <h2>Categories</h2>
+                  </div>
+                  <div class="content">
+                    <ul>
+                      <li><a href="#">- Nature Lifestyle</a></li>
+                      <li><a href="#">- Awesome Layouts</a></li>
+                      <li><a href="#">- Creative Ideas</a></li>
+                      <li><a href="#">- Responsive  s</a></li>
+                      <li><a href="#">- HTML5 / CSS3  s</a></li>
+                      <li><a href="#">- Creative &amp; Unique</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="sidebar-item tags">
+                  <div class="sidebar-heading">
+                    <h2>Tag Clouds</h2>
+                  </div>
+                  <div class="content">
+                    <ul>
+                      <li><a href="#">Lifestyle</a></li>
+                      <li><a href="#">Creative</a></li>
+                      <li><a href="#">HTML5</a></li>
+                      <li><a href="#">Inspiration</a></li>
+                      <li><a href="#">Motivation</a></li>
+                      <li><a href="#">PSD</a></li>
+                      <li><a href="#">Responsive</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% endblock %}

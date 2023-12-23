@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+
+<title>All Blog Data</title>
+
+<style>
+    .showdata
+    {
+        padding: 10rem 0rem;
+    }
+    .showdata h2
+    {
+        text-align: center;
+        font-weight: bold;
+    }
+</style>
+
+<section class="showdata">
+
+    <!-- showData.html or any relevant template -->
+    {% if messages %}
+    {% for message in messages %}
+    <script>
+        alert("{{ message }}");
+    </script>
+    {% endfor %}
+    {% endif %}
+
+    <!-- Your existing template content goes here -->
+
+    <h2>All Blog Data</h2>
+   
+    <p style="text-align: right;padding: 10px 50px;" class="">
+        <a href="{% url 'addnewblog' %}"><b>Add New Blogs</b></a>
+    </p>
+
+    <table border="1" cellspeacing="1rem" cellpadding="5px" rules="all">
+        <thead style="text-align: center;">
+            <th>Sr No</th>
+            <th>Categories</th>
+            <th>title</th>
+            <th>Description</th>
+            <th>Writer</th>
+            <th>Date</th>
+            <th>Image</th>
+            <th>Banner</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            {% for b in data %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{b.categories}}</td>
+                <td>{{b.title}}</td>
+                <td>{{b.description}}</td>
+                <td>{{b.writer}}</td>
+                <td>{{b.date}}</td>
+                <td>{{b.image}}</td>
+                <td>{{b.banner_image}}</td>
+                <td>
+                    <a href="{% url 'deleteblog' b.id %}">Delete</a> 
+                    <a href="{% url 'editblog' b.id %}">Edit</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+
+<title>Create Blog Post</title>
+<style>
+
+    .editblog-heading
+    {
+        padding-top: 10rem;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 10rem auto;
+        margin-top: 1rem;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    input,
+    textarea,
+    button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #4caf50;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<section>
+
+    <h2 class="editblog-heading">Edit Blog Post</h2>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <label for="categories">Categories:</label>
+        <input type="text" id="categories" value="{{blog.categories}}" name="categories" required><br>
+
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="{{blog.title}}" required><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" required>{{blog.description}}</textarea><br>
+
+        <label for="writer">Writer:</label>
+        <input type="text" id="writer" name="writer" value="{{blog.writer}}" required><br>
+
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" accept="image/*"><br>
+
+        <label for="image">Banner Image:</label>
+        {{ blog.banner_image}} 
+        <input type="file" id="bimage" name="banner_image" accept="image/*"><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</section>
+
+{% endblock %}
